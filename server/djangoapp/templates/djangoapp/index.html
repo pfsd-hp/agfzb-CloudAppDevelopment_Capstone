@@ -34,9 +34,27 @@
                     <a class="nav-link" href="{% url 'djangoapp:contact' %}">Contact</a>
                 </li>
                 <!-- Add other nav items here if needed -->
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link">Hello, {{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'djangoapp:logout' %}" class="nav-link">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a href="{% url 'djangoapp:login' %}" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'djangoapp:registration' %}" class="nav-link">Sign Up</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
+    {% block content %}
+    
+    {% endblock %}
     <!--Add a dealer table here -->
 
     </body>
